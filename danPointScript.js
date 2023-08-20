@@ -4,10 +4,6 @@
     const audioBloup = document.getElementById('bloup');
     const audioWave = document.getElementById('wave');
     const audioSplash = document.getElementById('splash');
-/*
-La musique de fond doit être indépendante de la partie.
-Quand Reset : seulement les compteurs.
-*/
 
     function resetCounters() {
       counters.forEach(counter => {
@@ -82,28 +78,3 @@ Quand Reset : seulement les compteurs.
 
 
   toggleMusicLink.addEventListener('click', toggleMusic);
-
-
-
-
-
-
-    /*
-    const toggleMusic = () => {
-  musicOn = !musicOn;
-
-  if (musicOn) {
-    console.log('Turning on music');
-    toggleMusicLink.textContent = 'Music: ON/off';
-    audioMusicDan.play();
-  } else {
-    console.log('Turning off music');
-    toggleMusicLink.textContent = 'Music: on/OFF';
-    audioMusicDan.pause();
-        }
-    };
-
-    toggleMusic();
-
-    toggleMusicLink.addEventListener('click', toggleMusic);
-    */

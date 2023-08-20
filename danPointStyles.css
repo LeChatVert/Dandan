@@ -98,6 +98,8 @@
   }
 
   .dropdown-content a {
+    display: block;
+    padding: 5px;
     position: relative;
     text-decoration: none; 
     color: #333; /* Change the link color to a desired color ?*/
