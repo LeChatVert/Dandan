@@ -1,0 +1,39 @@
+dans html, dans chaque counter:
+      <div class="lost-indicator"></div>
+
+      <div class="lost-indicator"></div>
+
+dans script :
+
+fonction : reset counters
+    const lostIndicator = counter.querySelector('.lost-indicator');
+    lostIndicator.textContent = '';
+
+counter foreach :
+      const lostIndicator = counter.querySelector('.lost-indicator');
+
+increase button :
+      lostIndicator.textContent = '';
+
+decrease button :
+       if (points === 0) {
+            lostIndicator.textContent = 'Lost';
+          }
+
+//////
+/*
+  .my-button {
+    padding: 10px 20px;
+    border: 10px black;
+    cursor: pointer;
+  }
+*/
+
+<a href="#" id="changeBackground">Change Background</a>  // dans le html pour ajouter l'option
+
+Dans le JS pour la mécanique.
+  const changeBackgroundLink = document.getElementById('changeBackground');
+    changeBackgroundLink.addEventListener('click', () => {
+      // Code changement background
+      document.body.style.backgroundColor = 'lightblue';
+    });
