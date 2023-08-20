@@ -70,9 +70,7 @@ Quand Reset : seulement les compteurs.
   });
 
   const toggleMusic = () => {
-    musicOn = !musicOn;
-
-    if (musicOn) {
+    if (!musicOn) {
       console.log('Turning on music');
       toggleMusicLink.textContent = 'Music: ON/off';
       audioMusicDan.play();
@@ -81,9 +79,9 @@ Quand Reset : seulement les compteurs.
       toggleMusicLink.textContent = 'Music: on/OFF';
       audioMusicDan.pause();
     }
+    musicOn = !musicOn;
   };
 
-  toggleMusic();
 
   toggleMusicLink.addEventListener('click', toggleMusic);
 
