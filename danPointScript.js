@@ -4,7 +4,6 @@
     const audioBloup = document.getElementById('bloup');
     const audioWave = document.getElementById('wave');
     const audioSplash = document.getElementById('splash');
-
 /*
 La musique de fond doit être indépendante de la partie.
 Quand Reset : seulement les compteurs.
@@ -12,6 +11,7 @@ Quand Reset : seulement les compteurs.
 
     function resetCounters() {
       counters.forEach(counter => {
+        counter.points = 5;
         const circles = counter.querySelectorAll('.circle');
         for (let i = 0; i < circles.length; i++) {
           circles[i].classList.remove('lost');
@@ -25,26 +25,26 @@ Quand Reset : seulement les compteurs.
       const increaseButton = counter.querySelector('.increaseButton');
       const decreaseButton = counter.querySelector('.decreaseButton');
       const circles = counter.querySelectorAll('.circle');
-
-      let points = 5;
+      
+      counter.points = 5;
 
       increaseButton.addEventListener('click', () => {
         audioBloup.play();
-        if (points < 5) {
-          points++;
-          circles[points - 1].classList.remove('lost');
-          circles[points - 1].textContent = points;
+        if (counter.points < 5) {
+          counter.points++;
+          circles[counter.points - 1].classList.remove('lost');
+          circles[counter.points - 1].textContent = counter.points;
         }
       });
 
       decreaseButton.addEventListener('click', () => {
         audioBloup.play();
-        if (points > 0) {
-          circles[points - 1].textContent = '';
-          circles[points - 1].classList.add('lost');
-          points--;
+        if (counter.points > 0) {
+          circles[counter.points - 1].textContent = '';
+          circles[counter.points - 1].classList.add('lost');
+          counter.points--;
         }
-        if (points === 0) {
+        if (counter.points === 0) {
             audioSplash.play();
         }
       });
@@ -52,10 +52,8 @@ Quand Reset : seulement les compteurs.
 
     resetButton.addEventListener('click', () => {
         audioWave.play();
-      resetCounters();
-      setTimeout(() => {
-        location.reload();
-      }, 3000);
+        resetCounters();
+      
     });
 
     // menu 
