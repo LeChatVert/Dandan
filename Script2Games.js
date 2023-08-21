@@ -34,9 +34,9 @@ const gameConfigs = [
   {
     name: 'whiteDan',
     background: 'white.jpg',
-    bloup: 'bloup.mp3',
+    bloup: 'bloupNoir.mp3',
     wave: 'wave.mp3',
-    splash: 'splash.mp3',
+    splash: 'splashNoir.mp3',
     music: 'musicDan.mp3',
   },
   
@@ -49,13 +49,10 @@ function setGameConfigByName(configName) {
     const config = gameConfigs.find(config => config.name === configName);
   
     if (config) {
-      // Set background
       document.body.style.backgroundImage = `url(${config.background})`;
-      // Update audio sources
       audioBloup.src = `sons/${config.bloup}`;
       audioWave.src = `sons/${config.wave}`;
       audioSplash.src = `sons/${config.splash}`;
-      // Update music based on the config
       if (musicOn) {
         audioMusicDan.pause();
         audioMusicDan.src = `sons/${config.music}`;
@@ -87,8 +84,10 @@ counters.forEach(counter => {
     counter.points = 5;
 
     increaseButton.addEventListener('click', () => {
-      audioBloup.play();
-      if (counter.points < 5) {
+        if (soundsOn === true) {
+            audioBloup.play();
+        }
+        if (counter.points < 5) {
         counter.points++;
         circles[counter.points - 1].classList.remove('lost');
         circles[counter.points - 1].textContent = counter.points;
@@ -96,29 +95,35 @@ counters.forEach(counter => {
     });
 
     decreaseButton.addEventListener('click', () => {
-      audioBloup.play();
+        if (soundsOn === true) {
+            audioBloup.play();
+        }
       if (counter.points > 0) {
         circles[counter.points - 1].textContent = '';
         circles[counter.points - 1].classList.add('lost');
         counter.points--;
       }
-      if (counter.points === 0) {
+      if (counter.points === 0 && soundsOn === true) {
           audioSplash.play();
       }
     });
   });
 
 resetButton.addEventListener('click', () => {
-  audioWave.play();
+    if (soundsOn === true) {
+        audioWave.play();
+    }
   resetCounters();
 });
 
-// menu options
+// MENU OPTIONS
+
+//musique on-off
 const toggleMusicLink = document.getElementById('toggleMusic');
 const audioMusicDan = document.getElementById('musicDan');
 let musicOn = true;
 
-audioMusicDan.addEventListener('canplaythrough', () => {
+audioMusicDan.addEventListener('canplaythrough', () => { //utilité de ce bloc ?
   if (musicOn) {
     audioMusicDan.play();
   }
@@ -136,8 +141,24 @@ const toggleMusic = () => {
   }
   musicOn = !musicOn;
 };
-
 toggleMusicLink.addEventListener('click', toggleMusic);
+
+//sons on-off
+const toggleSoundsLink = document.getElementById('toggleSounds');
+let soundsOn = true;
+
+const toggleSounds = () => {
+    if (!soundsOn) {
+      console.log('Turning on sounds');
+      toggleSoundsLink.textContent = 'Sounds: ON/off';
+    } else {
+      console.log('Turning off sounds');
+      toggleSoundsLink.textContent = 'Sounds: on/OFF';
+    }
+    soundsOn = !soundsOn;
+  };
+  toggleSoundsLink.addEventListener('click', toggleSounds);
+
 
 
 //event listener pour les changements de jeu
