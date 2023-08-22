@@ -123,7 +123,7 @@ const toggleMusicLink = document.getElementById('toggleMusic');
 const audioMusicDan = document.getElementById('musicDan');
 let musicOn = true;
 
-audioMusicDan.addEventListener('canplaythrough', () => { //utilité de ce bloc ?
+audioMusicDan.addEventListener('canplaythrough', () => { //utilité de ce bloc ? Uncaught (in promise) DOMException: play() failed because the user didn't interact with the document first.
   if (musicOn) {
     audioMusicDan.play();
   }
@@ -184,4 +184,14 @@ const changeGameLinkBlue = document.getElementById('blueDan');
 changeGameLinkBlue.addEventListener('click', () => {
     setGameConfigByName('blueDan');
   resetCounters();
+});
+
+//affichage des options de jeu
+const reglesContainer = document.querySelector('.regles-container');
+
+reglesContainer.addEventListener('click', event => {
+  const ruleTitle = event.target.closest('.regle').querySelector('.ruleTitle');
+  if (ruleTitle) {
+    ruleTitle.classList.toggle('active');
+  }
 });
