@@ -160,18 +160,19 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 100vh;
+    height: auto;
     position: fixed;
-    bottom: -5%;
+    bottom: 0;
     left: 0;
     right: 0;
-    transition: transform 0.3s ease-in-out;
-    transform: translateY(5%); /* Start hidden at the bottom */
+    padding: 20px; /* Add padding to give space for content */
+    box-sizing: border-box; /* Include padding in width calculation */
   }
   
-  .regles-container:hover {
-    transform: translateY(0); /* Move sections upward on container hover */
+  /*.regles-container:hover {
+    transform: translateY(0); /* Move sections upward on container hover 
   }
+  */
   
   .regle {
     flex: 1;
@@ -181,21 +182,22 @@
     transition: transform 0.3s ease-in-out;
     overflow: hidden;
     position: relative;
-    bottom: 0;
+    bottom: -90%; /* Start a bit above the bottom of the screen */
     border-radius: 20px;
     padding: 10px;
     margin: 10px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    height: 40px; /* Initial small height */
+    max-height: 40px; /* Initial maximum height */
   }
   
   .regle:hover {
     background-color: rgba(105, 146, 158, 0.7);
     color: black;
-    height: 80vh; /* Increased height on hover */
+    transform: translateY(-20%); /* Move section upward on hover */
     z-index: 1; /* Ensure the hovered section is on top */
+    max-height: 80vh; /* Increased maximum height on hover */
   }
   
 .regle:hover .ruleTitle {
